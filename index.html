@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>硅基AI聊天</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="容器">
+        <h1>硅基AI聊天</h1>
+        <div class="聊天框" id="聊天记录"></div>
+        
+        <div class="输入区">
+            <textarea id="用户输入" placeholder="输入消息..."></textarea>
+            <button onclick="处理发送()">发送</button>
+            <button onclick="清除历史()" style="background:#ff4d4f">清除记录</button>
+        </div>
+        
+        <div class="状态栏" id="状态栏"></div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
