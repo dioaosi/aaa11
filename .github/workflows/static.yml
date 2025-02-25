@@ -1,0 +1,43 @@
+# Simple workflow for deploying static content to GitHub Pages# Simple workflow for deploying static content to GitHub Pages
+namename: : : : : : : : : : : : : : : : : : : : : : : : : : Deploy static content to PagesDeploy static content to Pages
+
+onon::
+  # Runs on pushes targeting the default branch# Runs on pushes targeting the default branch
+  push  push::
+    branches    branches: : : : : : : : : : : : : : : : : : : : : : : : : : : [[[[[[[[[[[[[[[[[[[[[[[[[[["main""main""main""main""main""main""main""main""main""main""main""main""main""main""main""main""main""main""main""main""main""main""main""main""main""main""main"]]]]]]]]]]]]]]]]]]]]]]]]]]]
+
+  # Allows you to run this workflow manually from the Actions tab# Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch  workflow_dispatch::
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissionspermissions::
+  contents  contents: : : : : : : : : : : : : : : : : : : : : : : : : : : read
+  pages  pages: : : : : : : : : : : : : : : : : : : : : : : : : : : write
+  id-token  id-token: : : : : : : : : : : : : : : : : : : : : : : : : : : write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrencyconcurrency::
+  group  group: : : : : : : : : : : : : : : : : : : : : : : : : : : "pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages""pages"
+  cancel-in-progress  cancel-in-progress: : : : : : : : : : : : : : : : : : : : : : : : : : : falsefalse
+
+jobsjobs::
+  # Single deploy job since we're just deploying# Single deploy job since we're just deploying
+  deploy  deploy::
+    environment    environment::
+      name      name: : : : : : : : : : : : : : : : : : : : : : : : : : : github-pages
+      url      url: : : : : : : : : : : : : : : : : : : : : : : : : : : ${{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{ steps.deployment.outputs.page_url }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+    runs-on    runs-on: : : : : : : : : : : : : : : : : : : : : : : : : : : ubuntu-latest
+    steps    steps::
+      -       - name- name: : : : : : : : : : : : : : : : : : : : : : : : : : : Checkout
+        uses        uses: : : : : : : : : : : : : : : : : : : : : : : : : : : actions/checkout@v4
+      -       - name- name: : : : : : : : : : : : : : : : : : : : : : : : : : : Setup Pages
+        uses        uses: : : : : : : : : : : : : : : : : : : : : : : : : : : actions/configure-pages@v5
+      -       - name- name: : : : : : : : : : : : : : : : : : : : : : : : : : : Upload artifact
+        uses        uses: : : : : : : : : : : : : : : : : : : : actions/upload-pages-artifact@v3actions/upload-pages-artifact@v3
+        with        with::
+          # Upload entire repository# Upload entire repository
+          path          path: : : : : : : : : : : : : : : : : : : : '.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.'
+      -       - name- name: : : : : : : : : : : : : : : : : : : : Deploy to GitHub PagesDeploy to GitHub Pages
+        id        id: : : : : : : : : : : : : : : : : : : : deploymentdeployment
+        uses        uses: : : : : : : : : : : : : : : : : : : : actions/deploy-pages@v4actions/deploy-pages@v4
